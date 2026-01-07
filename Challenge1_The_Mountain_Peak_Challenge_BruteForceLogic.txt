@@ -1,0 +1,25 @@
+def count_ways_to_summit(n):
+    #since the pattern is detected as fibonacci sequence
+    fib=[1,1]
+    for i in range(2,n+1,1):
+        new=fib[i-1]+fib[i-2]
+        fib.append(new)
+    return fib[n]
+# def count_ways_to_summit(n):
+#     if n<=1:
+#         return 1
+#     return count_ways_to_summit(n-1)+count_ways_to_summit(n-2)
+n=int(input("Enter the total number of steps to reach the top ➡ : "))
+if 1<=n<=45:
+    start = time.perf_counter()
+    tracemalloc.start()
+    result = count_ways_to_summit(n)
+    current, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+    end = time.perf_counter()
+    print('The total number of unique ways to reach the summit ⛰ :', result)
+    print("\nExecution time:", end - start, "seconds")
+    print(f"Current memory usage: {current / 1024:.2f} KB")
+    print(f"Peak memory usage: {peak / 1024:.2f} KB")
+else:
+    print("Enter steps in range of 1-45!")

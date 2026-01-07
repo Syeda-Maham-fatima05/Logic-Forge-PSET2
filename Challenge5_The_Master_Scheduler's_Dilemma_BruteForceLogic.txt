@@ -1,0 +1,29 @@
+def min_cancelled_bookings(intervals):
+    start_time=[]
+    end_time=[]
+    count=0
+    for i in intervals:
+        if i[0] in start_time:
+            count+=1
+        start_time.append(i[0])
+        end_time.append(i[1])
+    return count
+intervals=[[1, 2],[2, 3],[3, 4],[1, 3]]
+if not (1<=len(intervals)<=10**5):
+    print("Invalid input: number of intervals out of range")
+else:
+    valid=True
+    for interval in intervals:
+        if len(interval)!=2:
+            valid=False
+            break
+        start,end=interval
+        if not (-5*10**4<=start<end<=5*10**4):
+            valid=False
+            break
+    if not valid:
+        print("Invalid input: interval constraints violated")
+    else:
+        result=min_cancelled_bookings(intervals)
+        print("Requests:",intervals)
+        print("Minimum removals:",result)

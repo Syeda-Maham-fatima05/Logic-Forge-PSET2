@@ -1,0 +1,64 @@
+def count_payment_combinations(coins, total_sum):
+    count=0
+    n=len(coins)
+    for i in range(total_sum+1):
+        sum1=i*coins[0]
+        if sum1>total_sum:
+            break
+        if n==1:
+            if sum1==total_sum:
+                count+=1
+            continue
+        for j in range(total_sum+1):
+            sum2=sum1+j*coins[1]
+            if sum2>total_sum:
+                break
+            if n==2:
+                if sum2==total_sum:
+                    count+=1
+                continue
+            for k in range(total_sum+1):
+                sum3=sum2+k*coins[2]
+                if sum3>total_sum:
+                    break
+                if n==3:
+                    if sum3==total_sum:
+                        count+=1
+                    continue
+                for l in range(total_sum + 1):
+                    sum4 = sum3 + l * coins[3]
+                    if sum4 > total_sum:
+                        break
+                    if sum4 == total_sum:
+                        count += 1
+    return count
+coins1=[1,2,3]
+target1=4
+if not 1<=len(coins1)<=1000 and not 1<=target1<=1000:
+    for i in coins1:
+        if not 1<=i<=1000:
+            print("Enter numbers in range of 1-1000")
+print("Case A: Small Change")
+print("Target Sum: ",target1)
+print("Vault Coins: ",coins1)
+print("Total ways: ",count_payment_combinations(coins1,target1))
+coins2=[2,5,3,6]
+target2=10
+if not 1<=len(coins2)<=1000 and not 1<=target2<=1000:
+    for i in coins2:
+        if not 1<=i<=1000:
+            print("Enter numbers in range of 1-1000")
+print("\nCase B: Specific Denominations")
+print("Target Sum: ",target2)
+print("Vault Coins: ",coins2)
+print("Total ways: ",count_payment_combinations(coins2,target2))
+coins3=[4]
+target3=5
+if not 1<=len(coins1)<=1000 and not 1<=target1<=1000:
+    for i in coins1:
+        if not 1<=i<=1000:
+            print("Enter numbers in range of 1-1000")
+print("\nCase C: The Impossible Payment")
+print("Target Sum: ",target3)
+print("Vault Coins: ",coins3)
+print("Total ways: ",count_payment_combinations(coins3,target3))
